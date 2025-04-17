@@ -1,0 +1,61 @@
+<div class="bg-[#11a088] h-[100dvh]">
+  <div
+    class="w-fit m-auto transform translate-y-22 text-white bg-[#09574a] p-12 rounded-md"
+  >
+    <img
+      src="/logo/logo-white.png"
+      alt="alaifftime logo"
+      class="w-fit mb-4 m-auto mt-12"
+    />
+    <p>Stay focus and organize with clear, actionable goals.</p>
+
+    <div class="mt-16">
+      <h2 class="text-center text-[#11a088] text-3xl font-bold mb-8">
+        SIGN UP NOW
+      </h2>
+      <form [formGroup]="UserForm">
+        <div>
+          <label for="fullname">
+            <span>Fullname</span>
+            <input
+              type="text"
+              placeholder="example. John Doe"
+              class="p-4 border border-[#11a088] bg-white text-[#11a088] w-full mb-8 outline-none"
+              formControlName="fullname"
+            />
+          </label>
+        </div>
+
+        <div>
+          <label for="username">
+            <span>Username</span>
+            <input
+              type="text"
+              placeholder="example: jhD_00"
+              class="p-4 border border-[#11a088] bg-white text-[#11a088] w-full mb-8 outline-none"
+              formControlName="username"
+            />
+          </label>
+        </div>
+
+        <div>
+          <label for="password">
+            <span>Password</span>
+            <input
+              type="password"
+              placeholder="password"
+              class="p-4 border border-[#11a088] bg-white text-[#11a088] w-full mb-8 outline-none"
+              formControlName="password"
+            />
+          </label>
+        </div>
+        <button
+          class="font-sans w-full border border-[#11a088] p-4 text-center hover:bg-[#11a088] hover:text-[#09574a] transition all rounded-md cursor-pointer shadow-md"
+          (click)="signUpUser()"
+        >
+          sign up
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
