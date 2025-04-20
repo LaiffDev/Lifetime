@@ -13,6 +13,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { authenticationInterceptor } from './utils/interceptor/authentication.interceptor';
+import { provideStore } from '@ngxs/store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,5 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withInterceptors([authenticationInterceptor])),
     provideHttpClient(withInterceptorsFromDi()),
+    provideStore(),
   ],
 };

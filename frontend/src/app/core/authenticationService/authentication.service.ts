@@ -15,7 +15,7 @@ export class AuthenticationService {
       username: username,
       password: password,
     };
-    return this.http.post('http://localhost:3008/api/sign-up', User);
+    return this.http.post('http://localhost:3093/sign-up', User);
   }
 
   Login(username: String, password: String) {
@@ -23,6 +23,6 @@ export class AuthenticationService {
       username: username,
       password: password,
     };
-    return this.http.post('http://localhost:3008/api/login', LoggedUser);
+    return this.http.post('http://localhost:3093/login', LoggedUser);
   }
 }

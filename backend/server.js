@@ -20,7 +20,9 @@ mongoose
 //ENDPOINTS FOR USERS
 //routes are handled directly here
 app.get("/", usersController.getWelcome);
+app.get("/users", usersController.GetUsers);
 app.post("/sign-up", usersController.SignUp);
+app.post("/login", usersController.Login);
 
 //if using controllers, routes must be mapped to them
 

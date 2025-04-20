@@ -33,20 +33,23 @@ export class LoginComponent {
     const username = this.UserForm.value.username;
     const password = this.UserForm.value.password;
 
-    this.authService.Login(username!, password!).subscribe({
-      next: (res) => {
-        this.loggedUser = res;
-
-        if (
-          this.loggedUser.username == username &&
-          this.loggedUser.password == password
-        ) {
-          this.router.navigate(['dashboard']);
-        }
-      },
-      error: (err) => {
-        console.error('Error logging in user : ', err);
-      },
-    });
+    if (this.UserForm.invalid) {
+      alert('All fields are required!');
+    } else {
+      this.authService.Login(username!, password!).subscribe({
+        next: (res: any) => {
+          const logged = res['user'];
+          const token = res['token'];
+          if (logged.username == username) {
+            this.router.navigate(['dashboard']);
+            localStorage.setItem('username', logged.username);
+            localStorage.setItem('token', token);
+          }
+        },
+        error: (err) => {
+          console.error('Error fetching for user : ', err);
+        },
+      });
+    }
   }
 }

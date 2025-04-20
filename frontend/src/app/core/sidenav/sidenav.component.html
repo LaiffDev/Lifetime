@@ -2,9 +2,6 @@
   <mat-drawer #drawer class="example-sidenav" mode="over" autoFocus="false">
     <div class="w-full mt-2 p-2 mb-20">
       <img src="logo/logo-white.png" alt="" class="w-60 m-auto" />
-      <!-- <p class="text-xs w-full text-white">
-        Stay focus and organize with clear, actionable goals.
-      </p> -->
     </div>
 
     <!-- navigations -->
@@ -86,7 +83,7 @@
             [matMenuTriggerFor]="menu"
             class="flex items-center"
           >
-            username
+            <span class="text-white">welcome, {{ username }}</span>
           </button>
         </div>
 
@@ -96,7 +93,7 @@
             Profile settings
           </button>
 
-          <button mat-menu-item>
+          <button mat-menu-item (click)="logout()">
             <span class="material-symbols-rounded font-medium"> logout </span>
             Logout
           </button>
@@ -105,5 +102,12 @@
     </header>
   </div>
 
+  <h2 class="text-[#11A088] text-2xl p-3 font-medium">
+    Have a nice day, {{ username }}
+  </h2>
+
   <!-- content -->
+  <div class="p-3">
+    <router-outlet></router-outlet>
+  </div>
 </mat-drawer-container>
