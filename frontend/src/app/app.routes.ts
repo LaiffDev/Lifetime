@@ -6,6 +6,7 @@ import { authenticationGuard } from './utils/guard/authentication.guard';
 import { SidenavComponent } from './core/sidenav/sidenav.component';
 import { RoutineComponent } from './features/routine/routine.component';
 import { TasksComponent } from './features/tasks/tasks.component';
+import { JournalComponent } from './features/journal/journal.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'routine', component: RoutineComponent },
       { path: 'tasks', component: TasksComponent },
+      { path: 'journal', component: JournalComponent },
     ],
   },
 ];

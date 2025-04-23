@@ -1,6 +1,56 @@
 <div class="p-8">
-  <nav class="text-xs">
+  <nav class="text-xs mb-8">
     <a routerLink="/dashboard" class="text-[#11A088]">Dashboard | </a>
     <span class="text-gray-300">Routine</span>
   </nav>
+
+  <div class="mb-8">
+    <form
+      class="example-form"
+      [formGroup]="TimeBlockGroup"
+      (submit)="saveRoutine($event)"
+    >
+      <mat-form-field>
+        <mat-label>Select day</mat-label>
+        <mat-select>
+          @for (day of daysOfWeek; track day) {
+          <mat-option [value]="day">{{ day }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Pick a time</mat-label>
+        <input matInput [matTimepicker]="picker" />
+        <mat-timepicker-toggle matIconSuffix [for]="picker" />
+        <mat-timepicker #picker />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Insert routine</mat-label>
+        <input matInput placeholder="Wake up" formControlName="routine" />
+      </mat-form-field>
+
+      <button class="w-[30%] bg-[#11a088] text-white p-3 cursor-pointer">
+        save
+      </button>
+    </form>
+  </div>
+
+  <div class="">
+    <table class="bg-red-200 w-full text-center p-3">
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Routine</th>
+      </tr>
+      @for(routine of routines; track routine){
+      <tr>
+        <td>{{ routine.day }}</td>
+        <td>{{ routine.time }}</td>
+        <td>{{ routine.routine }}</td>
+      </tr>
+      }
+    </table>
+  </div>
 </div>
