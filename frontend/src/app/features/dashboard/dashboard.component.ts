@@ -15,7 +15,18 @@ export class DashboardComponent {
     if (typeof localStorage != 'undefined') {
       this.username = localStorage.getItem('username');
     }
+    this.formatDate();
     this.timeConfig();
+  }
+
+  formatDate() {
+    const now = new Date();
+    const weekday = now.toLocaleDateString('en-US', { weekday: 'short' });
+    const day = now.getDate().toString().padStart(2, '0');
+    const month = now.toLocaleDateString('en-US', { month: 'short' });
+    const year = now.getFullYear();
+
+    this.date = `${weekday}, ${day} ${month}.${year}`; // "Wed, 23 Apr.2025"
   }
 
   timeConfig() {

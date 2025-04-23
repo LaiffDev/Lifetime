@@ -3,7 +3,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatTimepickerModule } from '@angular/material/timepicker';
 import { RouterLink } from '@angular/router';
 
 import {
@@ -24,7 +23,6 @@ import {
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatTimepickerModule,
   ],
 
   templateUrl: './routine.component.html',
@@ -50,9 +48,7 @@ export class RoutineComponent {
     'Sunday',
   ];
 
-  saveRoutine(e: Event) {
-    e.preventDefault();
-
+  saveRoutine() {
     const day = this.TimeBlockGroup.value.day;
     const time = this.TimeBlockGroup.value.time;
     const routine = this.TimeBlockGroup.value.routine;
@@ -63,8 +59,10 @@ export class RoutineComponent {
       routine: routine,
     };
 
-    this.routines.push(this.dailyRoutine);
+    console.log(this.dailyRoutine);
 
-    console.log('Daily routines : ', this.routines);
+    // this.routines.push(this.dailyRoutine);
+
+    // console.log('Daily routines : ', this.routines);
   }
 }

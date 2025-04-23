@@ -1,6 +1,18 @@
 <div class="bg-[#11a088] h-[100dvh]">
+  <div>
+    <div
+      routerLink=""
+      class="p-3 bg-[#09574a] text-white w-fit flex justify-between items-center cursor-pointer relative top-5 rounded-md left-5"
+    >
+      <span class="material-symbols-rounded tex-2xl font-medium">
+        arrow_back
+      </span>
+      <p>back</p>
+    </div>
+  </div>
+
   <div
-    class="w-fit m-auto transform translate-y-22 text-white bg-[#09574a] p-12 rounded-md"
+    class="w-fit m-auto transform translate-y-10 text-white bg-[#09574a] p-12 rounded-md"
   >
     <img
       src="/logo/logo-white.png"
@@ -13,7 +25,7 @@
       <h2 class="text-center text-[#11a088] text-3xl font-bold mb-8">
         SIGN UP NOW
       </h2>
-      <form [formGroup]="UserForm">
+      <form [formGroup]="UserForm" (submit)="signUpUser()">
         <div>
           <label for="fullname">
             <span>Fullname</span>
@@ -51,7 +63,6 @@
         </div>
         <button
           class="font-sans w-full border border-[#11a088] p-4 text-center hover:bg-[#11a088] hover:text-[#09574a] transition all rounded-md cursor-pointer shadow-md"
-          (click)="signUpUser()"
         >
           sign up
         </button>

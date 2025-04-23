@@ -6,11 +6,11 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthenticationService } from '../../core/authenticationService/authentication.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
 })
@@ -29,30 +29,28 @@ export class SignupComponent {
   ) {}
 
   signUpUser() {
-    const fullName = this.UserForm.value.fullname;
-    const userName = this.UserForm.value.username;
-    const passWord = this.UserForm.value.password;
+    const fullname = this.UserForm.value.fullname;
+    const username = this.UserForm.value.username;
+    const password = this.UserForm.value.password;
 
     this.authService.GetUsers().subscribe({
       next: (res: any) => {
         this.users = res;
 
-        this.users.forEach((user) => {
-          if (user.username == userName) {
-            alert('Username already exists, please choose a new one!');
-            this.router.navigate(['sign-up']);
-          } else if (this.UserForm.valid && user.username !== userName) {
-            this.authService.SignUp(fullName!, userName!, passWord!).subscribe({
+        this.users.filter((user) => {
+          if (user.username == username) {
+            alert('Username already exists. Choose a new one!');
+            console.log('existing user : ', user);
+          } else {
+            this.authService.SignUp(fullname!, username!, password!).subscribe({
               next: (res) => {
-                alert('Signed up successfully!');
-                this.router.navigate(['']);
+                alert('User saved successfully!');
+                this.router.navigate(['/login']);
               },
               error: (err) => {
-                console.error('Error signing up: ', err);
+                console.error('Error saving user : ', err.message);
               },
             });
-          } else if (this.UserForm.invalid) {
-            alert('All fields are reuired');
           }
         });
       },

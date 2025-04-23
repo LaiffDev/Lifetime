@@ -8,28 +8,36 @@
     <form
       class="example-form"
       [formGroup]="TimeBlockGroup"
-      (submit)="saveRoutine($event)"
+      (submit)="saveRoutine()"
     >
-      <mat-form-field>
-        <mat-label>Select day</mat-label>
-        <mat-select>
-          @for (day of daysOfWeek; track day) {
-          <mat-option [value]="day">{{ day }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <mat-label>Select day</mat-label>
+          <mat-select formControlName="day">
+            @for (day of daysOfWeek; track day) {
+            <mat-option [value]="day">{{ day }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <mat-label>Pick a time</mat-label>
-        <input matInput [matTimepicker]="picker" />
-        <mat-timepicker-toggle matIconSuffix [for]="picker" />
-        <mat-timepicker #picker />
-      </mat-form-field>
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Insert time</mat-label>
+          <input
+            matInput
+            placeholder="05:00 - 05:30"
+            formControlName="routine"
+          />
+        </mat-form-field>
+      </div>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Insert routine</mat-label>
-        <input matInput placeholder="Wake up" formControlName="routine" />
-      </mat-form-field>
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Insert routine</mat-label>
+          <input matInput placeholder="Wake up" formControlName="routine" />
+        </mat-form-field>
+      </div>
 
       <button class="w-[30%] bg-[#11a088] text-white p-3 cursor-pointer">
         save

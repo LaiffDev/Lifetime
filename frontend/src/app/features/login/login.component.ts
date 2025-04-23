@@ -34,7 +34,7 @@ export class LoginComponent {
     const password = this.UserForm.value.password;
 
     if (this.UserForm.invalid) {
-      alert('All fields are required!');
+      alert('Invalid credentials!');
     } else {
       this.authService.Login(username!, password!).subscribe({
         next: (res: any) => {

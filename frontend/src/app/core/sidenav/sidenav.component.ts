@@ -19,10 +19,15 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class SidenavComponent {
   //*global variables
   showFiller = false;
+  username!: string | null;
 
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (typeof localStorage != 'undefined') {
+      this.username = localStorage.getItem('username');
+    }
+  }
 
   logout() {
     localStorage.removeItem('username');
