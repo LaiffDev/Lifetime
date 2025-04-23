@@ -1,8 +1,19 @@
 <div>
   <mat-drawer-container class="example-container" autosize hasBackdrop="true">
     <mat-drawer #drawer class="example-sidenav" mode="over" autoFocus="false">
-      <div class="w-full mt-2 p-2 mb-20">
+      <div class="w-full mt-2 p-2 mb-10">
         <img src="logo/logo-white.png" alt="" class="w-60 m-auto" />
+      </div>
+
+      <div class="w-full m-auto p-2">
+        <img
+          src="logo/3d_avatar_21.png"
+          alt=""
+          class="w-fit m-auto rounded-full border-2 border-white p-1"
+        />
+        <p class="text-white text-center mt-4 mb-8 font-medium">
+          welcome, {{ username }}
+        </p>
       </div>
 
       <!-- navigations -->

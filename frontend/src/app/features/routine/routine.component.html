@@ -11,7 +11,7 @@
       (submit)="saveRoutine()"
     >
       <div>
-        <mat-form-field>
+        <mat-form-field class="example-full-width">
           <mat-label>Select day</mat-label>
           <mat-select formControlName="day">
             @for (day of daysOfWeek; track day) {
@@ -24,11 +24,7 @@
       <div>
         <mat-form-field class="example-full-width">
           <mat-label>Insert time</mat-label>
-          <input
-            matInput
-            placeholder="05:00 - 05:30"
-            formControlName="routine"
-          />
+          <input matInput placeholder="05:00 - 05:30" formControlName="time" />
         </mat-form-field>
       </div>
 
@@ -45,20 +41,7 @@
     </form>
   </div>
 
-  <div class="">
-    <table class="bg-red-200 w-full text-center p-3">
-      <tr>
-        <th>Day</th>
-        <th>Time</th>
-        <th>Routine</th>
-      </tr>
-      @for(routine of routines; track routine){
-      <tr>
-        <td>{{ routine.day }}</td>
-        <td>{{ routine.time }}</td>
-        <td>{{ routine.routine }}</td>
-      </tr>
-      }
-    </table>
+  <div>
+    <app-time-table [routines]="routines"></app-time-table>
   </div>
 </div>

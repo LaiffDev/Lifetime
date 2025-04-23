@@ -26,7 +26,7 @@ export class DashboardComponent {
     const month = now.toLocaleDateString('en-US', { month: 'short' });
     const year = now.getFullYear();
 
-    this.date = `${weekday}, ${day} ${month}.${year}`; // "Wed, 23 Apr.2025"
+    this.date = `${weekday}, ${day} ${month}. ${year}`; // "Wed, 23 Apr.2025"
   }
 
   timeConfig() {
