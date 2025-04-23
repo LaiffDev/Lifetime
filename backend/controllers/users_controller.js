@@ -20,6 +20,14 @@ exports.GetUsers = async (req, res) => {
 exports.SignUp = async (req, res) => {
   try {
     const { fullname, username, password } = req.body;
+
+    //check if user with the same username already exists
+    const existingUser = await Users.findOne({ username });
+
+    if (existingUser) {
+      return res.status(400).json({ message: "Username already taken" });
+    }
+
     const hashed_password = await bcrypt.hash(password, 10);
 
     const user = new Users({
@@ -27,8 +35,8 @@ exports.SignUp = async (req, res) => {
       username,
       password: hashed_password,
     });
-    await user.save();
 
+    await user.save();
     res.status(201).json(user);
   } catch (err) {
     console.error("Error saving user... : ", err);
@@ -39,17 +47,25 @@ exports.SignUp = async (req, res) => {
 exports.Login = async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await Users.findOne({ username });
-  if (!user) {
-    res.status(401).json({ message: "invalid username" });
+  try {
+    const user = await Users.findOne({ username });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid username" });
+    }
+
+    const passwordMatch = bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Invalid password" });
+    }
+
+    const token = jwt.sign(
+      { username: user.username, _id: user._id },
+      process.env.ACCESS_TOKEN,
+      { expiresIn: "1d" }
+    );
+
+    return res.status(200).json({ token, user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  const passwordMatch = bcrypt.compare(password, user.password);
-  if (!passwordMatch) {
-    res.status(401).json({ message: "Invalid password" });
-  }
-
-  const token = jwt.sign({ username: user.username }, process.env.ACCESS_TOKEN);
-
-  return res.status(200).json({ token: token, user: user });
 };

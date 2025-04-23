@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthenticationService {
       username: username,
       password: password,
     };
-    return this.http.post('http://localhost:3093/sign-up', User);
+    return this.http.post(`${environment.baseUrl}/sign-up`, User);
   }
 
   Login(username: String, password: String) {
@@ -23,6 +24,10 @@ export class AuthenticationService {
       username: username,
       password: password,
     };
-    return this.http.post('http://localhost:3093/login', LoggedUser);
+    return this.http.post(`${environment.baseUrl}/login`, LoggedUser);
+  }
+
+  GetUsers() {
+    return this.http.get(`${environment.baseUrl}/users`);
   }
 }

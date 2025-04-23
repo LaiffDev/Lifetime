@@ -21,6 +21,8 @@ export class SignupComponent {
     password: new FormControl('', [Validators.required]),
   });
 
+  users: any[] = [];
+
   constructor(
     private authService: AuthenticationService,
     private router: Router
@@ -31,18 +33,32 @@ export class SignupComponent {
     const userName = this.UserForm.value.username;
     const passWord = this.UserForm.value.password;
 
-    if (this.UserForm.valid) {
-      this.authService.SignUp(fullName!, userName!, passWord!).subscribe({
-        next: (res) => {
-          alert('Signed up successfully!');
-          this.router.navigate(['']);
-        },
-        error: (err) => {
-          console.error('Error signing up: ', err);
-        },
-      });
-    } else {
-      alert('Fill in all blank fields');
-    }
+    this.authService.GetUsers().subscribe({
+      next: (res: any) => {
+        this.users = res;
+
+        this.users.forEach((user) => {
+          if (user.username == userName) {
+            alert('Username already exists, please choose a new one!');
+            this.router.navigate(['sign-up']);
+          } else if (this.UserForm.valid && user.username !== userName) {
+            this.authService.SignUp(fullName!, userName!, passWord!).subscribe({
+              next: (res) => {
+                alert('Signed up successfully!');
+                this.router.navigate(['']);
+              },
+              error: (err) => {
+                console.error('Error signing up: ', err);
+              },
+            });
+          } else if (this.UserForm.invalid) {
+            alert('All fields are reuired');
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching for users : ', err);
+      },
+    });
   }
 }
