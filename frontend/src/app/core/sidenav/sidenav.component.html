@@ -1,113 +1,95 @@
-<mat-drawer-container class="example-container" autosize hasBackdrop="true">
-  <mat-drawer #drawer class="example-sidenav" mode="over" autoFocus="false">
-    <div class="w-full mt-2 p-2 mb-20">
-      <img src="logo/logo-white.png" alt="" class="w-60 m-auto" />
-    </div>
-
-    <!-- navigations -->
-    <div>
-      <nav>
-        <ul class="text-white">
-          <li>
-            <a
-              href=""
-              class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
-            >
-              <span class="material-symbols-rounded tex-2xl font-medium">
-                dashboard
-              </span>
-              <span class="text-xl font-normal">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href=""
-              class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
-            >
-              <span class="material-symbols-rounded tex-2xl font-medium">
-                routine
-              </span>
-              <span class="text-xl font-normal">Routine</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
-            >
-              <span class="material-symbols-rounded tex-2xl font-medium">
-                checklist
-              </span>
-              <span class="text-xl font-normal">Tasks</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
-            >
-              <span class="material-symbols-rounded tex-2xl font-medium">
-                article
-              </span>
-              <span class="text-xl font-normal">Journal</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
-            >
-              <span class="material-symbols-rounded tex-2xl font-medium">
-                help
-              </span>
-              <span class="text-xl font-normal">Help</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </mat-drawer>
-
-  <!-- header -->
-  <div>
-    <header class="bg-[#11a088] p-3 flex items-center justify-between">
-      <div class="example-sidenav-content flex justify-center items/center">
-        <button type="button" mat-button (click)="drawer.toggle()">
-          <span class="material-symbols-rounded text-white"> menu </span>
-        </button>
+<div>
+  <mat-drawer-container class="example-container" autosize hasBackdrop="true">
+    <mat-drawer #drawer class="example-sidenav" mode="over" autoFocus="false">
+      <div class="w-full mt-2 p-2 mb-20">
+        <img src="logo/logo-white.png" alt="" class="w-60 m-auto" />
       </div>
+
+      <!-- navigations -->
       <div>
-        <div class="flex items-center text-white">
-          <span class="material-symbols-rounded tex-2xl font-medium">
-            person
-          </span>
-          <button
-            mat-button
-            [matMenuTriggerFor]="menu"
-            class="flex items-center"
-          >
-            <span class="text-white">welcome, {{ username }}</span>
+        <nav>
+          <ul class="text-white">
+            <li class="cursor-pointer" (click)="drawer.close()">
+              <a
+                routerLink="/dashboard"
+                class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
+              >
+                <span class="material-symbols-rounded tex-2xl font-medium">
+                  dashboard
+                </span>
+                <span class="text-xl font-normal">Dashboard</span>
+              </a>
+            </li>
+            <li class="cursor-pointer" (click)="drawer.close()">
+              <a
+                routerLink="routine"
+                class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
+              >
+                <span class="material-symbols-rounded tex-2xl font-medium">
+                  routine
+                </span>
+                <span class="text-xl font-normal">Routine</span>
+              </a>
+            </li>
+            <li class="cursor-pointer" (click)="drawer.close()">
+              <a
+                class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
+              >
+                <span class="material-symbols-rounded tex-2xl font-medium">
+                  checklist
+                </span>
+                <span class="text-xl font-normal">Tasks</span>
+              </a>
+            </li>
+            <li class="cursor-pointer" (click)="drawer.close()">
+              <a
+                class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
+              >
+                <span class="material-symbols-rounded tex-2xl font-medium">
+                  article
+                </span>
+                <span class="text-xl font-normal">Journal</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:bg-white hover:text-[#09574a] transition-all ease-linear p-6 mb-4 flex items-center gap-2"
+              >
+                <span class="material-symbols-rounded tex-2xl font-medium">
+                  help
+                </span>
+                <span class="text-xl font-normal">Help</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </mat-drawer>
+
+    <!-- header -->
+    <div>
+      <header class="bg-[#11a088] p-3 flex items-center justify-between">
+        <div class="example-sidenav-content flex justify-center items/center">
+          <button type="button" mat-button (click)="drawer.toggle()">
+            <span class="material-symbols-rounded text-white"> menu </span>
           </button>
         </div>
-
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <span class="material-symbols-rounded font-medium"> settings </span>
-            Profile settings
+        <div>
+          <button
+            class="flex items-center text-white cursor-pointer hover:bg-[#09574a] transition-all ease-linear p-3 rounded-full"
+            (click)="logout()"
+          >
+            <span class="material-symbols-rounded tex-2xl font-medium">
+              logout </span
+            >Logout
           </button>
+        </div>
+      </header>
+    </div>
 
-          <button mat-menu-item (click)="logout()">
-            <span class="material-symbols-rounded font-medium"> logout </span>
-            Logout
-          </button>
-        </mat-menu>
-      </div>
-    </header>
-  </div>
-
-  <h2 class="text-[#11A088] text-2xl p-3 font-medium">
-    Have a nice day, {{ username }}
-  </h2>
-
-  <!-- content -->
-  <div class="p-3">
-    <router-outlet></router-outlet>
-  </div>
-</mat-drawer-container>
+    <!-- content -->
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>
