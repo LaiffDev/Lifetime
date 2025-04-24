@@ -13,7 +13,11 @@ export class DashboardComponent {
 
   ngOnInit() {
     if (typeof localStorage != 'undefined') {
-      this.username = localStorage.getItem('username');
+      const token = localStorage.getItem('token');
+
+      if (token) {
+        this.username = localStorage.getItem('username');
+      }
     }
     this.formatDate();
     this.timeConfig();

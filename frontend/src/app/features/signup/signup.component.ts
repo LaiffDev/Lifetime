@@ -33,29 +33,14 @@ export class SignupComponent {
     const username = this.UserForm.value.username;
     const password = this.UserForm.value.password;
 
-    this.authService.GetUsers().subscribe({
-      next: (res: any) => {
-        this.users = res;
-
-        this.users.filter((user) => {
-          if (user.username == username) {
-            alert('Username already exists. Choose a new one!');
-            console.log('existing user : ', user);
-          } else {
-            this.authService.SignUp(fullname!, username!, password!).subscribe({
-              next: (res) => {
-                alert('User saved successfully!');
-                this.router.navigate(['/login']);
-              },
-              error: (err) => {
-                console.error('Error saving user : ', err.message);
-              },
-            });
-          }
-        });
+    this.authService.SignUp(fullname!, username!, password!).subscribe({
+      next: (res) => {
+        alert('Saved successfully!');
+        this.router.navigate(['']);
       },
       error: (err) => {
-        console.error('Error fetching for users : ', err);
+        alert('Username already taken!');
+        console.error('Error saving user : ', err);
       },
     });
   }

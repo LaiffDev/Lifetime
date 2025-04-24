@@ -29,6 +29,12 @@ export class LoginComponent {
     private router: Router
   ) {}
 
+  ngOnInit() {
+    // this.authService.GetUsers().subscribe((res) => {
+    //   console.log(res);
+    // });
+  }
+
   loginUser() {
     const username = this.UserForm.value.username;
     const password = this.UserForm.value.password;
@@ -38,16 +44,18 @@ export class LoginComponent {
     } else {
       this.authService.Login(username!, password!).subscribe({
         next: (res: any) => {
-          const logged = res['user'];
-          const token = res['token'];
-          if (logged.username == username) {
-            this.router.navigate(['dashboard']);
-            localStorage.setItem('username', logged.username);
-            localStorage.setItem('token', token);
+          this.loggedUser = res;
+
+          if (typeof localStorage != 'undefined') {
+            localStorage.setItem('username', this.loggedUser.user.username);
+            localStorage.setItem('token', this.loggedUser.token);
+
+            this.router.navigate(['/dashboard']);
           }
         },
         error: (err) => {
-          console.error('Error fetching for user : ', err);
+          alert('Invalid credentials! Try again');
+          console.error('Error logging in : ', err);
         },
       });
     }
