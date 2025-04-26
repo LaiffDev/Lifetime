@@ -5,6 +5,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { SignUp } from '../../../shared/store/users-store/user.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -19,7 +22,19 @@ export class SignupFormComponent {
     password: new FormControl('', [Validators.required]),
   });
 
+  constructor(protected store: Store, private router: Router) {}
+
+  ngOnInit() {}
+
   saveUser() {
-    console.log(this.SignUpForm.value);
+    if (this.SignUpForm.invalid) {
+      alert('All fields are required!');
+    } else {
+      this.store
+        .dispatch(new SignUp(this.SignUpForm.value))
+        .subscribe((res) => {
+          this.router.navigate(['login']);
+        });
+    }
   }
 }

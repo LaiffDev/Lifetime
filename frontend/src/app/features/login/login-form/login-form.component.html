@@ -8,7 +8,7 @@
     <p class="text-center text-xl mb-4 text-amber-50">
       Connect to see your progress
     </p>
-    <form>
+    <form [formGroup]="LoginForm" (submit)="loginUser()">
       <div class="text-left p-4 mb-2">
         <label for="username">
           <p class="font-medium mb-2 text-amber-50">Username</p>
@@ -16,6 +16,7 @@
             type="text"
             class="bg-amber-50 p-4 w-full outline-none"
             placeholder="example: mrossi"
+            formControlName="username"
           />
         </label>
       </div>
@@ -27,6 +28,7 @@
             type="password"
             class="bg-amber-50 p-4 w-full outline-none"
             placeholder="example: p@sSw0rD"
+            formControlName="password"
           />
         </label>
       </div>

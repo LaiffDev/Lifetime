@@ -15,4 +15,8 @@ export class UserService {
   SignUp(user: any) {
     return this._http.post<any>(`${environment.baseUrl}/sign-up`, user);
   }
+
+  Login(user: any) {
+    return this._http.post<any>(`${environment.baseUrl}/login`, user);
+  }
 }
