@@ -6,15 +6,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import {
-  provideHttpClient,
-  withFetch,
-  withInterceptors,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
-import { authenticationInterceptor } from './utils/authentication.interceptor';
-import { provideStore } from '@ngxs/store';
-import { UsersState } from './shared/store/users-store/user.state';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,8 +14,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    provideHttpClient(withInterceptors([authenticationInterceptor])),
-    provideHttpClient(withInterceptorsFromDi()),
-    provideStore([UsersState]),
   ],
 };

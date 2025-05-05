@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "The power of positive thinking",
+    "image": "../images/the-power-of-positive-thinking.jpg",
+    "pages": "320",
+    "author": "Norman Vincent Peale",
+    "isbn": "978-0749307158",
+    "language": "English"
+  },
+  {
+    "id": 2,
+    "name": "The power of positive thinking",
+    "image": "../images/the-power-of-positive-thinking.jpg",
+    "pages": "320",
+    "author": "Norman Vincent Peale",
+    "isbn": "978-0749307158",
+    "language": "Italian"
+  },
+  {
+    "id": 3,
+    "name": "The power of positive thinking",
+    "image": "../images/the-power-of-positive-thinking.jpg",
+    "pages": "320",
+    "author": "Norman Vincent Peale",
+    "isbn": "978-0749307158",
+    "language": "French"
+  },
+  {
+    "id": 4,
+    "name": "The power of positive thinking",
+    "image": "../images/the-power-of-positive-thinking.jpg",
+    "pages": "320",
+    "author": "Norman Vincent Peale",
+    "isbn": "978-0749307158",
+    "language": "Russian"
+  },
+  {
+    "id": 5,
+    "name": "The power of positive thinking",
+    "image": "../images/the-power-of-positive-thinking.jpg",
+    "pages": "320",
+    "author": "Norman Vincent Peale",
+    "isbn": "978-0749307158",
+    "language": "Spanish"
+  }
+]
